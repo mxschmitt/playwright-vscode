@@ -7,6 +7,7 @@ body:
     attributes:
       value: |
         **Please file an issue in the [Playwright repository](https://github.com/microsoft/playwright/issues).**
+        ---
   - type: checkboxes
     id: no-post
     attributes:
