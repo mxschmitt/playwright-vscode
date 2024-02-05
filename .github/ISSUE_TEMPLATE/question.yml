@@ -1,0 +1,20 @@
+name: 'Issue'
+description: If you have questions, please check StackOverflow or Discord
+title: '[Please read the message below]'
+labels: [':speech_balloon: Question']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please file an issue in the [Playwright repository](https://github.com/microsoft/playwright/issues)
+  - type: checkboxes
+    id: no-post
+    attributes:
+      label: |
+        Please do not submit this issue.
+      description: |
+        > [!IMPORTANT]
+        > This issue will be closed.
+      options:
+        - label: I understand
+          required: true
