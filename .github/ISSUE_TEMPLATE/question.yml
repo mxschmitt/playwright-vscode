@@ -1,12 +1,12 @@
-name: 'Issue'
-description: If you have questions, please check StackOverflow or Discord
+name: 'File an issue'
+description: If you want to report a bug or request a feature, please file an issue in the Playwright repository.
 title: '[Please read the message below]'
 labels: [':speech_balloon: Question']
 body:
   - type: markdown
     attributes:
       value: |
-        Please file an issue in the [Playwright repository](https://github.com/microsoft/playwright/issues)
+        **Please file an issue in the [Playwright repository](https://github.com/microsoft/playwright/issues).**
   - type: checkboxes
     id: no-post
     attributes:
