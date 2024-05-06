@@ -1,0 +1,42 @@
+pr: none
+
+trigger:
+  tags:
+    include:
+    - '*'
+
+resources:
+  repositories:
+  - repository: 1esPipelines
+    type: git
+    name: 1ESPipelineTemplates/1ESPipelineTemplates
+    ref: refs/tags/release
+
+extends:
+  template: v1/1ES.Official.PipelineTemplate.yml@1esPipelines
+  parameters:
+    pool:
+      name: DevDivPlaywrightAzurePipelinesUbuntu2204
+      os: linux
+    sdl:
+      sourceAnalysisPool:
+        name: DevDivPlaywrightAzurePipelinesWindows2022
+        # The image must be windows-based due to restrictions of the SDL tools. See: https://aka.ms/AAo6v8e
+        # In the case of a windows build, this can be the same as the above pool image.
+        os: windows
+      suppression:
+        suppressionFile: $(Build.SourcesDirectory)\.azure-pipelines\guardian\SDL\.gdnsuppress
+    stages:
+    - stage: Stage
+      jobs:
+      - job: HostJob
+        steps:
+        - task: AzureCLI@2
+          displayName: 'Get AzDO User ID'
+          inputs:
+            azureSubscription: 'Playwright-VSMarketplacePublishing'
+            scriptType: pscore
+            scriptLocation: inlineScript
+            inlineScript: |
+              az rest -u https://app.vssps.visualstudio.com/_apis/profile/profiles/me --resource 499b84ac-1321-427f-aa17-267ca6975798
+        
